@@ -1,0 +1,26 @@
+.header {
+  height: var(--sign-header-heaight);
+  padding: 0 160px;
+  background-color: #ECEBF5;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.headerLogo {
+  height: 70px;
+  cursor: pointer;
+}
+
+.pageName {
+  min-width: 48px;
+  margin-left: 10px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .header {
+    justify-content: center;
+  }
+}

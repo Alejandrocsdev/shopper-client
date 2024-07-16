@@ -1,0 +1,94 @@
+.inputContainer {
+  height: 40px;
+  display: flex;
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  outline: 0;
+}
+
+.input:focus {
+  border: 1px solid black;
+}
+
+.inputWarning {
+  background-color: #ffeaed;
+  border: 1px solid #ff424f;
+}
+
+.inputWarning:focus {
+  border: 1px solid #ff424f;
+}
+
+.textWarning {
+  width: 100%;
+  height: 21px;
+  padding-top: 5px;
+  margin-bottom: 10px;
+  color: #ff424f;
+  font-size: 12px;
+}
+
+.checkContainer {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.check {
+  color: #66CC00;
+}
+
+.eyeContainer {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.eye {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.errMsg {
+  margin-bottom: 30px;
+  padding: 12px 15px;
+  background-color: #ffdae0;
+  border: 1px solid #ff424f;
+  display: flex;
+}
+
+.crossIcon {
+  margin-right: 10px;
+  color: red;
+}
+
+.message {
+  font-size: 14px;
+}
+
+.submit {
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ECEBF5;
+  background-color: #100D25;
+  border: 0;
+  cursor: pointer;
+}
+
+.notAllowed {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.allowed:hover {
+  background-color: hsl(248, 48%, 40%)
+}

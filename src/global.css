@@ -4,7 +4,8 @@
 }
 
 :root {
-  --header-height: 120px
+  --header-height: 120px;
+  --sign-header-heaight: 85px;
 }
 
 body {

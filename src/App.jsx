@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
 // 頁面
 import Home from './pages/Home'
+import SignUp from './pages/SignUp'
+import SignIn from './pages/SignIn'
 import NotFound from './pages/NotFound'
 
 function App() {
@@ -13,6 +15,9 @@ function App() {
     <>
       <BrowserRouter basename="/">
         <Routes>
+          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/signIn" element={<SignIn />} />
+
           <Route path="/" element={<Layout />}>
             {/* 公開路由 */}
             <Route index element={<Home />} />
