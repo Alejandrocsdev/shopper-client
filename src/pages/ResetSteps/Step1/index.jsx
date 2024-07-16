@@ -1,5 +1,5 @@
 // 模組樣式
-import Styles from './style.module.css'
+import S from './style.module.css'
 // 組件
 import Step from '../../../components/Sign/Step'
 // 鉤子函式
@@ -83,9 +83,9 @@ function Step1({ onNext }) {
   const main = (
     <>
       {/* 電話/信箱輸入欄 */}
-      <div className={Styles.loginKey}>
+      <div className={S.loginKey}>
         <input
-          className={Styles.loginKeyInput}
+          className={S.loginKeyInput}
           type="text"
           name={isPhone ? 'phone' : 'email'}
           placeholder="Email / 手機號碼"
@@ -95,9 +95,9 @@ function Step1({ onNext }) {
         />
       </div>
       {/* 輸入錯誤 */}
-      <div className={Styles.warning}>{errorMessage}</div>
+      <div className={S.warning}>{errorMessage}</div>
       {/* 執行下一步 */}
-      <div className={`${Styles.submit} ${isValid ? Styles.allowed : Styles.notAllowed}`}>
+      <div className={`${S.submit} ${isValid ? S.allowed : S.notAllowed}`}>
         下一步
       </div>
     </>

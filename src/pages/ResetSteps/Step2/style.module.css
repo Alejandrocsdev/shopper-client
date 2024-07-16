@@ -1,0 +1,39 @@
+.iconContainer {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.emailIcon {
+  font-size: 50px;
+}
+
+.email {
+  color: orangered;
+}
+
+.text {
+  text-align: center;
+}
+
+.submit {
+  height: 40px;
+  margin-top: 15px;
+  font-weight: 700;
+  border-radius: 5px;
+  color: #ECEBF5;
+  background-color: #100D25;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background-color: hsl(248, 48%, 40%)
+}
+
+@media (max-width: 650px) {
+  .text {
+    font-size: 14px;
+  }
+}

@@ -17,6 +17,7 @@ import SignUpStep4 from './pages/SignUpSteps/Step4'
 import SignInStep1 from './pages/SignInSteps/Step1'
 
 import ResetStep1 from './pages/ResetSteps/Step1'
+import ResetStep2 from './pages/ResetSteps/Step2'
 
 import NotFound from './pages/NotFound'
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/signIn-step1-otp" element={<SignInStep1 />} />
 
           <Route path="/reset-step1" element={<ResetStep1 />} />
+          <Route path="/reset-step2" element={<ResetStep2 />} />
 
           <Route path="/" element={<Layout />}>
             {/* 公開路由 */}
