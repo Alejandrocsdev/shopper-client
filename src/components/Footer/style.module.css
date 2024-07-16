@@ -1,0 +1,123 @@
+.footer {
+  padding: 10px 160px;
+  background-color: #ECEBF5;
+}
+
+/* 平台資訊 */
+.platformInfo {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* 付款選項 / 物流合作 / 關注我們 */
+.platformInfo > div {
+  width: 360px;
+}
+
+/* 平台資訊類別名稱 */
+.catName {
+  margin-bottom: 10px;
+}
+
+/* 圖示容器 */
+.images {
+  height: 60px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* 圖示 */
+.image {
+  width: 80px;
+  padding: 5px;
+  background-color: white;
+  border: 2px solid gray;
+  border-radius: 10px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+/* 社群連結 */
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 社群圖示 */
+.socialMedia {
+  width: 80px;
+  font-size: 50px;
+}
+
+/* 公司資訊 */
+.companyInfo {
+  height: 50px;
+  padding-top: 10px;
+  color: gray;
+  border-top: 1px solid gray;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+@media (min-width: 1040px) and (max-width: 1300px) {
+
+  .platformInfo > div {
+    width: 300px;
+  }
+
+  .image,
+  .socialMedia {
+    width: 60px;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1040px) {
+  .footer {
+    padding: 10px 100px;
+  }
+
+  .platformInfo > div {
+    width: 260px;
+  }
+
+  .images {
+    height: 50px;
+  }
+
+  .image,
+  .socialMedia {
+    width: 50px;
+  }
+}
+
+@media (max-width: 800px) {
+  .footer {
+    padding: 10px 40px;
+  }
+
+  .platformInfo {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .platformInfo > div {
+    width: 300px;
+  }
+
+  .images {
+    height: 60px;
+  }
+
+  .image,
+  .socialMedia {
+    width: 60px;
+  }
+
+  .companyInfo {
+    height: 80px;
+    flex-direction: column;
+  }
+}
