@@ -1,0 +1,73 @@
+.main {
+  min-height: calc(100vh - var(--sign-header-heaight));
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+  background-color: #100D25;
+}
+
+.mainContainer {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card {
+  padding-bottom: 30px;
+  border-radius: 5px;
+  background-color: #ECEBF5;
+  position: relative;
+}
+
+.cardHeader {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back {
+  width: 80px;
+  font-size: 26px;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+}
+
+.back:hover {
+  color: hsl(0, 0%, 30%);
+}
+
+.cardName {
+  width: 420px;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+}
+
+.cardMain {
+  margin: 0 80px;
+}
+
+@media (max-width: 650px) {
+  .mainContainer {
+    width: 340px;
+    justify-content: center;
+  }
+
+  .back {
+    width: 40px;
+    font-size: 20px;
+    padding-left: 20px;
+  }
+
+  .cardName {
+    width: 300px;
+  }
+
+  .cardMain {
+    margin: 0 40px;
+  }
+}

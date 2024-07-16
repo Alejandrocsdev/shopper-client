@@ -1,0 +1,111 @@
+.errMsg {
+  margin-bottom: 30px;
+  padding: 12px 15px;
+  background-color: #ffdae0;
+  border: 1px solid #ff424f;
+  display: flex;
+}
+
+.crossIcon {
+  margin-right: 10px;
+  color: red;
+}
+
+.message {
+  font-size: 14px;
+}
+
+.cardText {
+  margin: 10px 0;
+}
+
+.text {
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.phone {
+  color: orangered;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.otpContainer {
+  margin: 20px 0;
+}
+
+.inputFields {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.otpInput {
+  width: 50px;
+  height: 60px;
+  font-size: 25px;
+  text-align: center;
+  border-radius: 5px;
+  border: none;
+  background: rgb(196, 196, 196);
+}
+
+.otpInput:focus {
+  outline: 3px solid #00b991;
+  outline-offset: 2px;
+}
+
+.other {
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.other span {
+  color: #219ebc;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.other span:hover {
+  filter: brightness(70%);
+}
+
+.countDown {
+  color: gray;
+  text-align: center;
+}
+
+.submit {
+  height: 40px;
+  margin-top: 20px;
+  font-weight: 700;
+  border-radius: 5px;
+  color: #ECEBF5;
+  background-color: #100D25;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.notAllowed {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.allowed:hover {
+  background-color: hsl(248, 48%, 40%)
+}
+
+@media (max-width: 650px) {
+  .otpInput {
+    width: 35px;
+    height: 50px;
+    font-size: 20px;
+  }
+}
