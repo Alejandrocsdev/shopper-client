@@ -1,0 +1,101 @@
+.cardText {
+  margin: 10px 0;
+}
+
+.text {
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.method {
+  color: orangered;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.password {
+  height: 40px;
+  margin-top: 20px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.02);
+  display: flex;
+  position: relative;
+}
+
+.passwordInput {
+  width: 100%;
+  padding: 12px;
+  border: 0;
+  outline: 0;
+}
+
+.warning {
+  background-color: #ffeaed;
+  border: 1px solid #ff424f;
+}
+
+.eyeContainer {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.eye {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.criteriaText {
+  margin-top: 8px;
+  color: gray;
+}
+
+.icon {
+  margin: 0 5px
+}
+
+.submit {
+  height: 40px;
+  margin-top: 30px;
+  font-weight: 700;
+  border-radius: 5px;
+  color: #ECEBF5;
+  background-color: #100D25;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.notAllowed {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.allowed:hover {
+  background-color: hsl(248, 48%, 40%)
+}
+
+.valid {
+  color: green;
+}
+
+.invalid {
+  color: red;
+}
+
+@media (max-width: 650px) {
+  .text {
+    font-size: 14px;
+  }
+
+  .criteriaText {
+    font-size: 14px;
+  }
+}
