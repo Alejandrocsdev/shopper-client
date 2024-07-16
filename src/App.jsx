@@ -9,9 +9,10 @@ import Home from './pages/Home'
 import SignUp from './pages/SignUp'
 import SignIn from './pages/SignIn'
 
-import OtpCard from './pages/SignUpSteps/Step1'
-import PasswordCard from './pages/SignUpSteps/Step2'
-import Success from './pages/SignUpSteps/Step3'
+import SignUpStep1 from './pages/SignUpSteps/Step1'
+import SignUpStep2 from './pages/SignUpSteps/Step2'
+import SignUpStep3 from './pages/SignUpSteps/Step3'
+import SignUpStep4 from './pages/SignUpSteps/Step4'
 
 import NotFound from './pages/NotFound'
 
@@ -22,9 +23,11 @@ function App() {
         <Routes>
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/signIn" element={<SignIn />} />
-          <Route path="/otp" element={<OtpCard />} />
-          <Route path="/password" element={<PasswordCard />} />
-          <Route path="/success" element={<Success />} />
+
+          <Route path="/signUp-step1-otp" element={<SignUpStep1 />} />
+          <Route path="/signUp-step2-password" element={<SignUpStep2 />} />
+          <Route path="/signUp-step3-success" element={<SignUpStep3 />} />
+          <Route path="/signUp-step4" element={<SignUpStep4 />} />
 
           <Route path="/" element={<Layout />}>
             {/* 公開路由 */}
