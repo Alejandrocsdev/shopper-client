@@ -1,6 +1,10 @@
 // 組件
 import Sign from '../components/Sign'
 // import Step1 from './SignInSteps/step1'
+
+// Sign: 登入頁(密碼登入 / 簡訊登入)
+// Step1: 輸入簡訊驗證碼
+
 // 鉤子函式
 import { useState } from 'react'
 
@@ -23,8 +27,8 @@ function SignIn() {
   return (
     <div>
       {step === 0 && <Sign isSignIn={true} isSmsSignIn={false} onNext={next} />}
-      {/* {step === 1 && <Sign isSignIn={true} isSmsSignIn={true}  onNext={next} onPrevious={previous} />}
-      {step === 2 && <Step1 onPrevious={previous} phone={phone} />} */}
+      {step === 1 && <Sign isSignIn={true} isSmsSignIn={true}  onNext={next} onPrevious={previous} />}
+      {/* {step === 2 && <Step1 onPrevious={previous} phone={phone} />} */}
     </div>
   )
 }
