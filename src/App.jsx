@@ -14,6 +14,8 @@ import SignUpStep2 from './pages/SignUpSteps/Step2'
 import SignUpStep3 from './pages/SignUpSteps/Step3'
 import SignUpStep4 from './pages/SignUpSteps/Step4'
 
+import SignInStep1 from './pages/SignInSteps/Step1'
+
 import NotFound from './pages/NotFound'
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
           <Route path="/signUp-step2-password" element={<SignUpStep2 />} />
           <Route path="/signUp-step3-success" element={<SignUpStep3 />} />
           <Route path="/signUp-step4" element={<SignUpStep4 />} />
+
+          <Route path="/signIn-step1-otp" element={<SignInStep1 />} />
 
           <Route path="/" element={<Layout />}>
             {/* 公開路由 */}
