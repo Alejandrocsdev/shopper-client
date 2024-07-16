@@ -1,0 +1,9 @@
+.anchor {
+  color: #219ebc;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.anchor:hover {
+  filter: brightness(70%);
+}
