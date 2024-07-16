@@ -1,0 +1,58 @@
+.failureIcon {
+  font-size: 70px;
+  color: red;
+  text-align: center;
+}
+
+.cardText {
+  margin: 10px 0;
+}
+
+.errMsg {
+  margin-bottom: 15px;
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+}
+
+.text {
+  font-size: 16px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.method {
+  color: orangered;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.count {
+  color: orangered;
+  font-weight: 700;
+}
+
+.submit {
+  height: 40px;
+  margin-top: 25px;
+  font-weight: 700;
+  border-radius: 5px;
+  color: #ECEBF5;
+  background-color: #100D25;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background-color: hsl(248, 48%, 40%)
+}
+
+@media (max-width: 650px) {
+  .text {
+    font-size: 14px;
+  }
+}
