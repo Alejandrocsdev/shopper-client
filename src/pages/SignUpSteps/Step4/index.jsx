@@ -6,23 +6,33 @@ import avatarPng from '../../../assets/images/avatar/avatar.png'
 import Step from '../../../components/Sign/Step'
 // 鉤子函式
 import { useNavigate } from 'react-router-dom'
+import { useError } from '../../../contexts/ErrorContext'
+// API
+import axios from '../../../api/axios'
+// URL
+const AUTO_SIGN_IN_URL = '/auth/signIn/auto'
 
 // 註冊(4): 已註冊過
 function Step4({ onNext, id, username, phone, avatar }) {
+  // 全域錯誤訊息
+  const { setErrMsg } = useError()
+  const handleError = (message) => setError(message)
+
   // 導向
   const navigate = useNavigate()
 
   // 處理表單提交事件
   const handleLogin = async () => {
     try {
-      const response = await axios.post(`${AUTO_SIGN_IN_URL}/${id}`, null, { withCredentials: true })
+      const response = await axios.post(`${AUTO_SIGN_IN_URL}/${id}`, null, {
+        withCredentials: true
+      })
       const accessToken = response.data.result
-      setAuth({ accessToken })
-      setSign(true)
+      console.log('Access Token: ', accessToken)
       console.log('自動登入')
       navigate('/')
     } catch (err) {
-      console.log('自動登入失敗')
+      handleError('自動登入失敗')
     }
   }
 
@@ -37,13 +47,9 @@ function Step4({ onNext, id, username, phone, avatar }) {
         此手機號碼已被此帳號使用，若此帳號屬於您，請點選「是，前往登入」。
       </div>
       {/* 登入 */}
-      <div className={S.submit}>
-        是，前往登入
-      </div>
+      <div className={S.submit} onClick={handleLogin}>是，前往登入</div>
       {/* 返回註冊 */}
-      <div className={S.back}>
-        否，返回註冊頁面
-      </div>
+      <div className={S.back} onClick={onNext}>否，返回註冊頁面</div>
     </>
   )
 

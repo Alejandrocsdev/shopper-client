@@ -3,7 +3,7 @@ import Sign from '../components/Sign'
 import Step1 from './SignUpSteps/Step1'
 import Step2 from './SignUpSteps/Step2'
 import Step3 from './SignUpSteps/Step3'
-// import Step4 from './SignUpSteps/Step4'
+import Step4 from './SignUpSteps/Step4'
 
 // Sign: 註冊頁(輸入手機號碼)
 // Step1: 輸入簡訊驗證碼
@@ -40,8 +40,8 @@ function SignUp() {
         case 1:
           return isSignedUp ? 4 : 2
         // 如已註冊過且不登入 => 返回註冊頁
-        // case 4:
-        //   return 0
+        case 4:
+          return 0
         // 導向下一步
         default:
           return prevStep + 1
@@ -58,7 +58,7 @@ function SignUp() {
       {step === 1 && <Step1 onNext={next} onPrevious={previous} phone={phone} />}
       {step === 2 && <Step2 onNext={next} phone={phone} />}
       {step === 3 && <Step3 id={id} phone={phone} />}
-      {/* {step === 4 && <Step4 onNext={next} id={id} phone={phone} username={username} avatar={avatar} />} */}
+      {step === 4 && <Step4 onNext={next} id={id} phone={phone} username={username} avatar={avatar} />}
     </div>
   )
 }

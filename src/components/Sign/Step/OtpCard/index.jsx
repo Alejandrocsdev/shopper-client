@@ -111,12 +111,13 @@ function OtpCard({ onNext, phone, isSignUp, isSmsSignIn }) {
 
           const response = await axios.get(`${GET_USER_URL}/${phone}`)
           const user = response.data.result
-          console.log(`電話 ${phone} 尚未被註冊`)
 
           if (user) {
             const { id, username, avatar } = user
+            console.log(`電話 ${phone} 已被註冊`)
             onNext({ id, username, avatar, phone }, true)
           } else {
+            console.log(`電話 ${phone} 尚未被註冊`)
             onNext({ phone })
           }
         } else if (isSmsSignIn) {
