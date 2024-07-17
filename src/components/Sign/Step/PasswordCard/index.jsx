@@ -8,7 +8,7 @@ import { faCircleXmark, faCircleCheck } from '@fortawesome/free-regular-svg-icon
 import { useState } from 'react'
 
 // 輸入密碼表單
-function PasswordCard({ onNext, phone, email, isSignUp = false }) {
+function PasswordCard({ onNext, phone, email, isSignUp }) {
   const [showPassword, setShowPassword] = useState(false)
   const [password, setPassword] = useState('')
   const [hasTyped, setHasTyped] = useState(false)

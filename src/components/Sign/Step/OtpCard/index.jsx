@@ -1,14 +1,21 @@
 // 模組樣式
-import Styles from './style.module.css'
+import S from './style.module.css'
 // Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
 // 鉤子函式
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+// API
+import axios from '../../../../api/axios'
+// URL
+const VERIFY_OTP_URL = '/verify/otp'
+const GET_USER_URL = '/users/phone'
+const SEND_OTP_URL = '/verify/send/otp'
+// const SMS_SIGN_IN_URL = '/auth/signIn/sms'
 
 // 簡訊驗證碼表單
-function OtpCard({ onNext, phone, isSignUp = false, isSmsSignIn = false }) {
+function OtpCard({ onNext, phone, isSignUp, isSmsSignIn }) {
   // 導向
   const navigate = useNavigate()
   // 輸入欄(格)元素
@@ -89,16 +96,8 @@ function OtpCard({ onNext, phone, isSignUp = false, isSmsSignIn = false }) {
     return () => clearInterval(timer)
   }, [counting])
 
-  // 處理倒數計時並傳送OTP
-  const handleResend = () => {
-    setCount(60)
-    setCounting(true)
-    setShowCountDown(true)
-    handleResendOTP()
-  }
-
   // 提交按鈕樣式
-  const submitStyle = otpFilled ? Styles.allowed : Styles.notAllowed
+  const submitStyle = otpFilled ? S.allowed : S.notAllowed
 
   // 處理提交事件
   const handleSubmit = async () => {
@@ -125,8 +124,6 @@ function OtpCard({ onNext, phone, isSignUp = false, isSmsSignIn = false }) {
             { withCredentials: true }
           )
           const accessToken = response.data.result
-          setAuth({ accessToken })
-          setSign(true)
           console.log('簡訊登入')
           navigate('/')
         } else {
@@ -149,8 +146,16 @@ function OtpCard({ onNext, phone, isSignUp = false, isSmsSignIn = false }) {
     }
   }
 
+  // 處理倒數計時並傳送OTP
+  const handleResend = () => {
+    setCount(60)
+    setCounting(true)
+    setShowCountDown(true)
+    handleResendOTP()
+  }
+
   // 元素變數 (倒數計時 || 重新發送)
-  const countDownText = <div className={Styles.countDown}>{`${count}秒後重新傳送`}</div>
+  const countDownText = <div className={S.countDown}>{`${count}秒後重新傳送`}</div>
   const other = (
     <div>
       沒有收到驗證碼嗎？<span onClick={handleResend}>重新傳送</span>
@@ -161,24 +166,24 @@ function OtpCard({ onNext, phone, isSignUp = false, isSmsSignIn = false }) {
     <>
       {/* 錯誤訊息 */}
       {error.hasError && (
-        <div className={Styles.errMsg}>
-          <div className={Styles.crossIcon}>
+        <div className={S.errMsg}>
+          <div className={S.crossIcon}>
             <FontAwesomeIcon icon={faCircleXmark} />
           </div>
-          <div className={Styles.message}>{error.errMsg}</div>
+          <div className={S.message}>{error.errMsg}</div>
         </div>
       )}
 
       {/* 表單文字 */}
-      <div className={Styles.cardText}>
-        <div className={Styles.text}>您的驗證碼已透過簡訊傳送至</div>
-        <div className={Styles.phone}>{phone}</div>
+      <div className={S.cardText}>
+        <div className={S.text}>您的驗證碼已透過簡訊傳送至</div>
+        <div className={S.phone}>{phone}</div>
       </div>
 
       {/* OTP輸入框 */}
-      <div className={Styles.otpContainer}>
-        <form className={Styles.otpForm}>
-          <div className={Styles.inputFields}>
+      <div className={S.otpContainer}>
+        <form className={S.otpForm}>
+          <div className={S.inputFields}>
             {otp.map((value, index) => {
               return (
                 <input
@@ -189,7 +194,7 @@ function OtpCard({ onNext, phone, isSignUp = false, isSmsSignIn = false }) {
                   onChange={(e) => handleChange(index, e)}
                   onClick={() => handleClick(index)}
                   onKeyDown={(e) => handleKeyDown(index, e)}
-                  className={Styles.otpInput}
+                  className={S.otpInput}
                 />
               )
             })}
@@ -198,12 +203,12 @@ function OtpCard({ onNext, phone, isSignUp = false, isSmsSignIn = false }) {
       </div>
 
       {/* OTP發送倒數 & 其他選項 */}
-      <div className={Styles.other}>
+      <div className={S.other}>
         <div>{showCountDown ? countDownText : other}</div>
       </div>
 
       {/* 執行下一步 */}
-      <div className={`${Styles.submit} ${submitStyle}`}>
+      <div className={`${S.submit} ${submitStyle}`} onClick={handleSubmit}>
         下一步
       </div>
     </>

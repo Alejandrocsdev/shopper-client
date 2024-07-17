@@ -1,7 +1,7 @@
 // 組件
 import Sign from '../components/Sign'
-// import Step1 from './SignUpSteps/Step1'
-// import Step2 from './SignUpSteps/Step2'
+import Step1 from './SignUpSteps/Step1'
+import Step2 from './SignUpSteps/Step2'
 // import Step3 from './SignUpSteps/Step3'
 // import Step4 from './SignUpSteps/Step4'
 
@@ -19,26 +19,26 @@ function SignUp() {
   // 步驟
   const [step, setStep] = useState(0)
   // 用戶資料
-  // const [id, setId] = useState('')
-  // const [username, setUsername] = useState('')
-  // const [phone, setPhone] = useState('')
-  // const [avatar, setAvatar] = useState('')
+  const [id, setId] = useState('')
+  const [username, setUsername] = useState('')
+  const [phone, setPhone] = useState('')
+  const [avatar, setAvatar] = useState('')
   // 用戶資料物件
-  // const user = { id, username, phone, avatar }
+  const user = { id, username, phone, avatar }
 
   // 下一步(包含資料傳遞)
   const next = (user, isSignedUp = false) => {
     // 設定用戶資料
-    // setId(user.id)
-    // setUsername(user.username)
-    // setPhone(user.phone)
-    // setAvatar(user.avatar)
+    setId(user.id)
+    setUsername(user.username)
+    setPhone(user.phone)
+    setAvatar(user.avatar)
     // 設定步驟
     setStep((prevStep) => {
       switch (prevStep) {
         // 如已註冊過 => 已註冊畫面(步驟4)
-        // case 1:
-        //   return isSignedUp ? 4 : 2
+        case 1:
+          return isSignedUp ? 4 : 2
         // 如已註冊過且不登入 => 返回註冊頁
         // case 4:
         //   return 0
@@ -54,10 +54,10 @@ function SignUp() {
 
   return (
     <div>
-      {step === 0 && <Sign onNext={next} isSignIn={false} />}
-      {/* {step === 1 && <Step1 onNext={next} onPrevious={previous} phone={phone} />}
+      {step === 0 && <Sign onNext={next} isSignIn={false} isSmsSignIn={false} />}
+      {step === 1 && <Step1 onNext={next} onPrevious={previous} phone={phone} />}
       {step === 2 && <Step2 onNext={next} phone={phone} />}
-      {step === 3 && <Step3 id={id} phone={phone} />}
+      {/* {step === 3 && <Step3 id={id} phone={phone} />}
       {step === 4 && <Step4 onNext={next} id={id} phone={phone} username={username} avatar={avatar} />} */}
     </div>
   )

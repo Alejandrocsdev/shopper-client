@@ -7,6 +7,11 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 // 鉤子函式
 import { useState, useRef } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
+// API
+import axios from '../../../../api/axios'
+// URL
+const SEND_OTP_URL = '/verify/send/otp'
+const PWD_SIGN_IN_URL = '/auth/signIn/pwd'
 
 // 表單: 密碼登入 / 簡訊登入 / 註冊
 const Form = ({ onNext, isSignIn, isSmsSignIn }) => {
@@ -71,19 +76,17 @@ const Form = ({ onNext, isSignIn, isSmsSignIn }) => {
       // 密碼登入
       if (isPwdSignIn) {
         const response = await axios.post(PWD_SIGN_IN_URL, input, { withCredentials: true })
-        const accessToken = response.data.result
-        setAuth({ accessToken })
-        console.log('密碼登入')
         setError({ errMsg: '', hasError: false })
         // 導向首頁
         navigate(from, { replace: true })
+        console.log('密碼登入')
       }
       // 發送簡訊驗證碼(註冊 / 簡訊登入)
       else {
         await axios.post(SEND_OTP_URL, { phone: input.loginKey })
-        console.log('簡訊發送')
         // 導向下一頁
         onNext({ phone: input.loginKey })
+        console.log('簡訊發送')
       }
     } catch (err) {
       setError({ errMsg: err.response?.data?.message, hasError: true })
@@ -154,7 +157,9 @@ const Form = ({ onNext, isSignIn, isSmsSignIn }) => {
       )}
 
       {/* 提交按鈕 */}
-      <button className={`${S.submit} ${submitStyle}`}>{isSignIn ? '登入' : '下一步'}</button>
+      <button className={`${S.submit} ${submitStyle}`} onClick={handleSubmit}>
+        {isSignIn ? '登入' : '下一步'}
+      </button>
     </div>
   )
 }
