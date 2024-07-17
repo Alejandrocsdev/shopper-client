@@ -12,7 +12,7 @@ import axios from '../../../../api/axios'
 const VERIFY_OTP_URL = '/verify/otp'
 const GET_USER_URL = '/users/phone'
 const SEND_OTP_URL = '/verify/send/otp'
-// const SMS_SIGN_IN_URL = '/auth/signIn/sms'
+const SMS_SIGN_IN_URL = '/auth/signIn/sms'
 
 // 簡訊驗證碼表單
 function OtpCard({ onNext, phone, isSignUp, isSmsSignIn }) {
@@ -127,10 +127,12 @@ function OtpCard({ onNext, phone, isSignUp, isSmsSignIn }) {
             { withCredentials: true }
           )
           const accessToken = response.data.result
+          console.log('Access Token: ', accessToken)
           console.log('簡訊登入')
           navigate('/')
         } else {
           await axios.post(VERIFY_OTP_URL, { phone, otp: otp.join('') })
+          console.log('OTP驗證成功')
           onNext({ phone })
         }
       } catch (err) {
