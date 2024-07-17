@@ -6,9 +6,19 @@ import { faCircleCheck } from '@fortawesome/free-regular-svg-icons'
 // 鉤子函式
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useError } from '../../../../contexts/ErrorContext'
+// API
+import axios from '../../../../api/axios'
+// URL
+const AUTO_SIGN_IN_URL = '/auth/signIn/auto'
+const NOTIFY_RESET_URL = '/notify/reset/password'
 
 // 成功頁面: 註冊 / 重設密碼
 function Success({ id, phone, email, isSignUp = false }) {
+  // 全域錯誤訊息
+  const { setErrMsg } = useError()
+  const handleError = (message) => setError(message)
+
   // 導向
   const navigate = useNavigate()
   // 倒數計時秒數
@@ -33,22 +43,21 @@ function Success({ id, phone, email, isSignUp = false }) {
 
   // 處理表單提交事件
   const handleSubmit = async () => {
-    if (isSignUp) {
-      try {
+    try {
+      if (isSignUp) {
         const response = await axios.post(`${AUTO_SIGN_IN_URL}/${id}`, null, {
           withCredentials: true
         })
         const accessToken = response.data.result
-        setAuth({ accessToken })
-        setSign(true)
+        console.log('Access Token: ', accessToken)
         console.log('自動登入')
         navigate('/profile')
-      } catch (err) {
-        console.log('自動登入失敗')
+      } else {
+        await axios.post(NOTIFY_RESET_URL, { email })
+        navigate('/signIn')
       }
-    } else {
-      await axios.post(NOTIFY_RESET_URL, { email })
-      navigate('/signIn')
+    } catch (error) {
+      isSignUp ? handleError('自動登入失敗') : handleError('發送信箱通知信失敗')
     }
   }
 
@@ -66,7 +75,7 @@ function Success({ id, phone, email, isSignUp = false }) {
           {isSignUp ? '瞎皮爾購物' : '登入頁面'}
         </div>
       </div>
-      <div className={S.submit}>
+      <div className={S.submit} onClick={handleSubmit}>
         {isSignUp ? '回到瞎皮爾購物' : '回到登入頁面'}
       </div>
     </>

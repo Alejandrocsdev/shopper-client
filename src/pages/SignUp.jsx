@@ -2,7 +2,7 @@
 import Sign from '../components/Sign'
 import Step1 from './SignUpSteps/Step1'
 import Step2 from './SignUpSteps/Step2'
-// import Step3 from './SignUpSteps/Step3'
+import Step3 from './SignUpSteps/Step3'
 // import Step4 from './SignUpSteps/Step4'
 
 // Sign: 註冊頁(輸入手機號碼)
@@ -57,8 +57,8 @@ function SignUp() {
       {step === 0 && <Sign onNext={next} isSignIn={false} isSmsSignIn={false} />}
       {step === 1 && <Step1 onNext={next} onPrevious={previous} phone={phone} />}
       {step === 2 && <Step2 onNext={next} phone={phone} />}
-      {/* {step === 3 && <Step3 id={id} phone={phone} />}
-      {step === 4 && <Step4 onNext={next} id={id} phone={phone} username={username} avatar={avatar} />} */}
+      {step === 3 && <Step3 id={id} phone={phone} />}
+      {/* {step === 4 && <Step4 onNext={next} id={id} phone={phone} username={username} avatar={avatar} />} */}
     </div>
   )
 }

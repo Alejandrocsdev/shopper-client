@@ -7,24 +7,24 @@ import { useError } from '../../contexts/ErrorContext'
 
 // 全域錯誤訊息
 function Error() {
-  const { errMsg } = useError()
+  const { errMsg, setErrMsg  } = useError()
   const location = useLocation()
 
   // 顯示三秒後移除
   useEffect(() => {
     if (errMsg) {
       const timer = setTimeout(() => {
-        setError('')
+        setErrMsg('')
       }, 3000)
 
       return () => clearTimeout(timer)
     }
-  }, [errMsg, setError])
+  }, [errMsg, setErrMsg])
 
   // 導向其他頁面後後移除
   useEffect(() => {
-    setError('')
-  }, [location.pathname, setError])
+    setErrMsg('')
+  }, [location.pathname, setErrMsg])
 
   if (!errMsg) {
     return null

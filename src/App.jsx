@@ -7,6 +7,7 @@ import { ErrorProvider } from './contexts/ErrorContext'
 import Layout from './components/Layout'
 // 頁面
 import Home from './pages/Home'
+import Profile from './pages/Profile'
 import SignUp from './pages/SignUp'
 import SignIn from './pages/SignIn'
 
@@ -50,6 +51,7 @@ function App() {
             <Route path="/" element={<Layout />}>
               {/* 公開路由 */}
               <Route index element={<Home />} />
+              <Route path="/profile" element={<Profile />} />
             </Route>
 
             {/* 錯誤路由 */}
