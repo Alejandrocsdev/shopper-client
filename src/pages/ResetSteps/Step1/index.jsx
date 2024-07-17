@@ -5,9 +5,19 @@ import Step from '../../../components/Sign/Step'
 // 鉤子函式
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useError } from '../../../contexts/ErrorContext'
+// API
+import axios from '../../../api/axios'
+// URL
+const SEND_OTP_URL = '/verify/send/otp'
+const SEND_LINK_URL = '/verify/send/link'
 
 // 重設密碼(1): 發送驗證碼 / 發送驗證信
 function Step1({ onNext }) {
+  // 全域錯誤訊息
+  const { setErrMsg } = useError()
+  const handleError = (message) => setErrMsg(message)
+
   // 導向
   const navigate = useNavigate()
 
@@ -62,20 +72,25 @@ function Step1({ onNext }) {
     }
   }
 
+  // 提交按鈕樣式
+  const submitStyle = isValid ? S.allowed : S.notAllowed
+
   // 處理發送OTP事件
   const handleSubmit = async () => {
     if (isValid) {
       try {
         const method = isPhone ? 'phone' : 'email'
         const url = method === 'phone' ? SEND_OTP_URL : SEND_LINK_URL
-        axios.post(url, { [method]: loginKey })
+        await axios.post(url, { [method]: loginKey, isReset: true })
         if (method === 'phone') {
+          console.log('簡訊發送')
           onNext({ phone: loginKey })
         } else {
+          console.log('驗證信發送')
           onNext({ email: loginKey })
         }
       } catch (err) {
-        console.log(err.response?.data?.message)
+        handleError(err.response?.data?.message)
       }
     }
   }
@@ -97,7 +112,7 @@ function Step1({ onNext }) {
       {/* 輸入錯誤 */}
       <div className={S.warning}>{errorMessage}</div>
       {/* 執行下一步 */}
-      <div className={`${S.submit} ${isValid ? S.allowed : S.notAllowed}`}>
+      <div className={`${S.submit} ${submitStyle}`} onClick={handleSubmit}>
         下一步
       </div>
     </>

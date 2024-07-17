@@ -1,6 +1,6 @@
 // 組件
-// import Step1 from '../pages/ResetSteps/Step1'
-// import Step2 from '../pages/ResetSteps/Step2'
+import Step1 from '../pages/ResetSteps/Step1'
+import Step2 from '../pages/ResetSteps/Step2'
 // import Step3 from '../pages/ResetSteps/Step3'
 // import Step4 from '../pages/ResetSteps/Step4'
 // import Step5 from '../pages/ResetSteps/Step5'
@@ -53,9 +53,9 @@ function Reset() {
 
   return (
     <div>
-      {/* {step === 1 && <Step1 onNext={next} />}
+      {step === 1 && <Step1 onNext={next} />}
       {step === 2 && <Step2 onPrevious={previous} onNext={next} phone={phone} email={email} />}
-      {step === 3 && <Step3 onNext={next} phone={phone} email={email} />}
+      {/* {step === 3 && <Step3 onNext={next} phone={phone} email={email} />}
       {step === 4 && <Step4 phone={phone} email={email} />}
       {step === 5 && <Step5 onNext={next} message={message} />} */}
     </div>

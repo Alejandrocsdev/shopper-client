@@ -17,7 +17,7 @@ const NOTIFY_RESET_URL = '/notify/reset/password'
 function Success({ id, phone, email, isSignUp = false }) {
   // 全域錯誤訊息
   const { setErrMsg } = useError()
-  const handleError = (message) => setError(message)
+  const handleError = (message) => setErrMsg(message)
 
   // 導向
   const navigate = useNavigate()

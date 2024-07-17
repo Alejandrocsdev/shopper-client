@@ -25,7 +25,7 @@ function Step2({ onPrevious, onNext, phone, email }) {
       </div>
       <div className={S.text}>請驗證</div>
       {/* 執行下一步 */}
-      <div className={S.submit} onClick={() => navigate('/')}>
+      <div className={S.submit} onClick={() => navigate('/signIn')}>
         下一步
       </div>
     </>

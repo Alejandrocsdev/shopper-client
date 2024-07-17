@@ -17,7 +17,7 @@ const UPDATE_PASSWORD_URL = '/users'
 function PasswordCard({ onNext, phone, email, isSignUp }) {
   // 全域錯誤訊息
   const { setErrMsg } = useError()
-  const handleError = (message) => setError(message)
+  const handleError = (message) => setErrMsg(message)
 
   const [showPassword, setShowPassword] = useState(false)
   const [password, setPassword] = useState('')

@@ -105,6 +105,7 @@ function OtpCard({ onNext, phone, isSignUp, isSmsSignIn }) {
       try {
         setError({ errMsg: '', hasError: false })
 
+        // 密碼登入
         if (isSignUp) {
           await axios.post(VERIFY_OTP_URL, { phone, otp: otp.join('') })
           console.log('OTP驗證成功')
@@ -120,7 +121,9 @@ function OtpCard({ onNext, phone, isSignUp, isSmsSignIn }) {
             console.log(`電話 ${phone} 尚未被註冊`)
             onNext({ phone })
           }
-        } else if (isSmsSignIn) {
+        }
+        // 簡訊登入
+        else if (isSmsSignIn) {
           const response = await axios.post(
             SMS_SIGN_IN_URL,
             { phone, otp: otp.join('') },
@@ -130,7 +133,9 @@ function OtpCard({ onNext, phone, isSignUp, isSmsSignIn }) {
           console.log('Access Token: ', accessToken)
           console.log('簡訊登入')
           navigate('/')
-        } else {
+        }
+        // 重設密碼
+        else {
           await axios.post(VERIFY_OTP_URL, { phone, otp: otp.join('') })
           console.log('OTP驗證成功')
           onNext({ phone })

@@ -15,7 +15,7 @@ function Error() {
     if (errMsg) {
       const timer = setTimeout(() => {
         setErrMsg('')
-      }, 3000)
+      }, 5000)
 
       return () => clearTimeout(timer)
     }

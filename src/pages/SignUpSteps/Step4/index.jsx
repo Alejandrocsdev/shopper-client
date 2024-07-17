@@ -16,7 +16,7 @@ const AUTO_SIGN_IN_URL = '/auth/signIn/auto'
 function Step4({ onNext, id, username, phone, avatar }) {
   // 全域錯誤訊息
   const { setErrMsg } = useError()
-  const handleError = (message) => setError(message)
+  const handleError = (message) => setErrMsg(message)
 
   // 導向
   const navigate = useNavigate()
