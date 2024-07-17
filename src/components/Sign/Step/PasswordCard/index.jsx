@@ -6,9 +6,19 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { faCircleXmark, faCircleCheck } from '@fortawesome/free-regular-svg-icons'
 // 鉤子函式
 import { useState } from 'react'
+import { useError } from '../../../../contexts/ErrorContext'
+// API
+import axios from '../../../../api/axios'
+// URL
+const SIGN_UP_URL = '/auth/signUp'
+const UPDATE_PASSWORD_URL = '/users'
 
 // 輸入密碼表單
 function PasswordCard({ onNext, phone, email, isSignUp }) {
+  // 全域錯誤訊息
+  const { setErrMsg } = useError()
+  const handleError = (message) => setError(message)
+
   const [showPassword, setShowPassword] = useState(false)
   const [password, setPassword] = useState('')
   const [hasTyped, setHasTyped] = useState(false)
@@ -55,6 +65,9 @@ function PasswordCard({ onNext, phone, email, isSignUp }) {
     return isValid ? S.valid : S.invalid
   }
 
+  // 提交按鈕樣式
+  const submitStyle = isPwdValid ? S.allowed : S.notAllowed
+
   // 處理表單提交事件
   const handleSubmit = async () => {
     if (isPwdValid) {
@@ -62,6 +75,7 @@ function PasswordCard({ onNext, phone, email, isSignUp }) {
         if (isSignUp) {
           const response = await axios.post(SIGN_UP_URL, { phone, password })
           const user = response.data.result
+          console.log('註冊成功')
           onNext({ id: user.id, phone })
         } else {
           const path = phone ? `/phone/${phone}` : `/email/${email}`
@@ -69,7 +83,7 @@ function PasswordCard({ onNext, phone, email, isSignUp }) {
           onNext({ phone, email })
         }
       } catch (err) {
-        console.log('註冊失敗 / 重設密碼失敗')
+        isSignUp ? handleError('註冊失敗') : handleError('重設密碼失敗')
       }
     }
   }
@@ -126,7 +140,9 @@ function PasswordCard({ onNext, phone, email, isSignUp }) {
         </div>
       </div>
       {/* 執行下一步 */}
-      <div className={`${S.submit} ${isPwdValid ? S.allowed : S.notAllowed}`}>註冊</div>
+      <div className={`${S.submit} ${submitStyle}`} onClick={handleSubmit}>
+        註冊
+      </div>
     </>
   )
 }

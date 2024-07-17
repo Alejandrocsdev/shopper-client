@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons'
 // 組件
 import Header from '../../../components/Sign/Header'
+import Error from '../../Error'
 import StepsView from '../../../components/Sign/Step/StepsView'
 import Footer from '../../../components/Footer'
 
@@ -13,6 +14,7 @@ function Step({ pageName, steps = false, step, back = false, backPath, cardName,
   return (
     <>
       <Header pageName={pageName} />
+      <Error />
       <main className={S.main}>
         <div className={S.mainContainer}>
           {steps && <StepsView step={step} />}

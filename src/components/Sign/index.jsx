@@ -4,6 +4,7 @@ import S from './style.module.css'
 import mainLogoPng from '../../assets/images/logo/cart_text_square_dark.png'
 // 組件
 import Header from './Header'
+import Error from '../Error'
 import Card from './Card'
 import Footer from '../Footer'
 
@@ -12,6 +13,7 @@ function Sign({ onPrevious, onNext, isSignIn, isSmsSignIn }) {
   return (
     <>
       <Header pageName={isSignIn ? '登入' : '註冊'} />
+      <Error />
       <main className={S.main}>
         <div className={S.mainContainer}>
           <img className={S.mainLogo} src={mainLogoPng} />

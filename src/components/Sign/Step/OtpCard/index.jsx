@@ -107,9 +107,11 @@ function OtpCard({ onNext, phone, isSignUp, isSmsSignIn }) {
 
         if (isSignUp) {
           await axios.post(VERIFY_OTP_URL, { phone, otp: otp.join('') })
+          console.log('OTP驗證成功')
 
           const response = await axios.get(`${GET_USER_URL}/${phone}`)
           const user = response.data.result
+          console.log(`電話 ${phone} 尚未被註冊`)
 
           if (user) {
             const { id, username, avatar } = user

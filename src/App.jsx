@@ -2,6 +2,7 @@
 import './global.css'
 // 鉤子函式
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ErrorProvider } from './contexts/ErrorContext'
 // 樣式組件
 import Layout from './components/Layout'
 // 頁面
@@ -27,33 +28,35 @@ import NotFound from './pages/NotFound'
 function App() {
   return (
     <>
-      <BrowserRouter basename="/">
-        <Routes>
-          <Route path="/signUp" element={<SignUp />} />
-          <Route path="/signIn" element={<SignIn />} />
+      <ErrorProvider>
+        <BrowserRouter basename="/">
+          <Routes>
+            <Route path="/signUp" element={<SignUp />} />
+            <Route path="/signIn" element={<SignIn />} />
 
-          <Route path="/signUp-step1-otp" element={<SignUpStep1 />} />
-          <Route path="/signUp-step2-password" element={<SignUpStep2 />} />
-          <Route path="/signUp-step3-success" element={<SignUpStep3 />} />
-          <Route path="/signUp-step4" element={<SignUpStep4 />} />
+            <Route path="/signUp-step1-otp" element={<SignUpStep1 />} />
+            <Route path="/signUp-step2-password" element={<SignUpStep2 />} />
+            <Route path="/signUp-step3-success" element={<SignUpStep3 />} />
+            <Route path="/signUp-step4" element={<SignUpStep4 />} />
 
-          <Route path="/signIn-step1-otp" element={<SignInStep1 />} />
+            <Route path="/signIn-step1-otp" element={<SignInStep1 />} />
 
-          <Route path="/reset-step1" element={<ResetStep1 />} />
-          <Route path="/reset-step2" element={<ResetStep2 />} />
-          <Route path="/reset-step3-password" element={<ResetStep3 />} />
-          <Route path="/reset-step4-success" element={<ResetStep4 />} />
-          <Route path="/reset-step5" element={<ResetStep5 />} />
+            <Route path="/reset-step1" element={<ResetStep1 />} />
+            <Route path="/reset-step2" element={<ResetStep2 />} />
+            <Route path="/reset-step3-password" element={<ResetStep3 />} />
+            <Route path="/reset-step4-success" element={<ResetStep4 />} />
+            <Route path="/reset-step5" element={<ResetStep5 />} />
 
-          <Route path="/" element={<Layout />}>
-            {/* 公開路由 */}
-            <Route index element={<Home />} />
-          </Route>
+            <Route path="/" element={<Layout />}>
+              {/* 公開路由 */}
+              <Route index element={<Home />} />
+            </Route>
 
-          {/* 錯誤路由 */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+            {/* 錯誤路由 */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </ErrorProvider>
     </>
   )
 }
