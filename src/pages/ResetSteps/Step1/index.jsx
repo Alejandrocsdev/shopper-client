@@ -6,6 +6,8 @@ import Step from '../../../components/Sign/Step'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useError } from '../../../contexts/ErrorContext'
+// 組件
+import Loading from '../../../components/Elements/Laoding'
 // API
 import axios from '../../../api/axios'
 // URL
@@ -26,6 +28,7 @@ function Step1({ onNext }) {
   const [errorMessage, setErrorMessage] = useState('')
   const [isPhone, setIsPhone] = useState(false)
   const [isValid, setIsValid] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   // change 監聽器
   const handleChange = (e) => {
@@ -79,9 +82,14 @@ function Step1({ onNext }) {
   const handleSubmit = async () => {
     if (isValid) {
       try {
+        setLoading(true)
+
         const method = isPhone ? 'phone' : 'email'
         const url = method === 'phone' ? SEND_OTP_URL : SEND_LINK_URL
         await axios.post(url, { [method]: loginKey, isReset: true })
+
+        setLoading(false)
+
         if (method === 'phone') {
           console.log('簡訊發送')
           onNext({ phone: loginKey })
@@ -90,6 +98,7 @@ function Step1({ onNext }) {
           onNext({ email: loginKey })
         }
       } catch (err) {
+        setLoading(false)
         handleError(err.response?.data?.message)
       }
     }
@@ -113,7 +122,7 @@ function Step1({ onNext }) {
       <div className={S.warning}>{errorMessage}</div>
       {/* 執行下一步 */}
       <div className={`${S.submit} ${submitStyle}`} onClick={handleSubmit}>
-        下一步
+        {loading ? <Loading height="30" /> : '下一步'}
       </div>
     </>
   )

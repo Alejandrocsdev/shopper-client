@@ -52,8 +52,13 @@ function Success({ id, phone, email, isSignUp = false }) {
         console.log('Access Token: ', accessToken)
         console.log('自動登入')
         navigate('/profile')
+      } else if (email) {
+        await axios.post(`${NOTIFY_RESET_URL}/email`, { email })
+        console.log('密碼重設成功通知信')
+        navigate('/signIn')
       } else {
-        await axios.post(NOTIFY_RESET_URL, { email })
+        await axios.post(`${NOTIFY_RESET_URL}/phone`, { phone })
+        console.log('密碼重設成功通知簡訊')
         navigate('/signIn')
       }
     } catch (error) {

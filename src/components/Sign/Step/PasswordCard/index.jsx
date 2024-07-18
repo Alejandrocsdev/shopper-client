@@ -80,6 +80,7 @@ function PasswordCard({ onNext, phone, email, isSignUp }) {
         } else {
           const path = phone ? `/phone/${phone}` : `/email/${email}`
           const response = await axios.put(`${UPDATE_PASSWORD_URL}/${path}`, { password })
+          console.log('重設密碼成功')
           onNext({ phone, email })
         }
       } catch (err) {
