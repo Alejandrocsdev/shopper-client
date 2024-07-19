@@ -6,6 +6,7 @@ import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
 // 鉤子函式
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import useAuth from '../../../../hooks/useAuth'
 // API
 import axios from '../../../../api/axios'
 // URL
@@ -16,6 +17,9 @@ const SMS_SIGN_IN_URL = '/auth/signIn/sms'
 
 // 簡訊驗證碼表單
 function OtpCard({ onNext, phone, isSignUp, isSmsSignIn }) {
+  // 身分憑證
+  const { setAuth } = useAuth()
+
   // 導向
   const navigate = useNavigate()
   // 輸入欄(格)元素
@@ -129,8 +133,7 @@ function OtpCard({ onNext, phone, isSignUp, isSmsSignIn }) {
             { phone, otp: otp.join('') },
             { withCredentials: true }
           )
-          const accessToken = response.data.result
-          console.log('Access Token: ', accessToken)
+          setAuth(response.data.result)
           console.log('簡訊登入')
           navigate('/')
         }

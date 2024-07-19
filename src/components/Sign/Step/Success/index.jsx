@@ -7,6 +7,9 @@ import { faCircleCheck } from '@fortawesome/free-regular-svg-icons'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useError } from '../../../../contexts/ErrorContext'
+import useAuth from '../../../../hooks/useAuth'
+// 組件
+import Loading from '../../../../components/Elements/Laoding'
 // API
 import axios from '../../../../api/axios'
 // URL
@@ -15,7 +18,10 @@ const NOTIFY_RESET_URL = '/notify/reset/password'
 
 // 成功頁面: 註冊 / 重設密碼
 function Success({ id, phone, email, isSignUp = false }) {
-  // 全域錯誤訊息
+  // 身分憑證
+  const { setAuth } = useAuth()
+
+  // 錯誤訊息(全域)
   const { setErrMsg } = useError()
   const handleError = (message) => setErrMsg(message)
 
@@ -23,6 +29,8 @@ function Success({ id, phone, email, isSignUp = false }) {
   const navigate = useNavigate()
   // 倒數計時秒數
   const [count, setCount] = useState(10)
+  // 載入中
+  const [loading, setLoading] = useState(false)
 
   // 成功圖示
   const successIcon = <FontAwesomeIcon icon={faCircleCheck} />
@@ -48,20 +56,24 @@ function Success({ id, phone, email, isSignUp = false }) {
         const response = await axios.post(`${AUTO_SIGN_IN_URL}/${id}`, null, {
           withCredentials: true
         })
-        const accessToken = response.data.result
-        console.log('Access Token: ', accessToken)
+        setAuth(response.data.result)
         console.log('自動登入')
         navigate('/profile')
       } else if (email) {
+        setLoading(true)
         await axios.post(`${NOTIFY_RESET_URL}/email`, { email })
+        setLoading(false)
         console.log('密碼重設成功通知信')
         navigate('/signIn')
       } else {
+        setLoading(true)
         await axios.post(`${NOTIFY_RESET_URL}/phone`, { phone })
+        setLoading(false)
         console.log('密碼重設成功通知簡訊')
         navigate('/signIn')
       }
     } catch (error) {
+      setLoading(false)
       isSignUp ? handleError('自動登入失敗') : handleError('發送信箱通知信失敗')
     }
   }
@@ -81,7 +93,7 @@ function Success({ id, phone, email, isSignUp = false }) {
         </div>
       </div>
       <div className={S.submit} onClick={handleSubmit}>
-        {isSignUp ? '回到瞎皮爾購物' : '回到登入頁面'}
+        {loading ? <Loading height="30" /> : isSignUp ? '回到瞎皮爾購物' : '回到登入頁面'}
       </div>
     </>
   )

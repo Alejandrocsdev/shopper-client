@@ -16,18 +16,24 @@ const SEND_LINK_URL = '/verify/send/link'
 
 // 重設密碼(1): 發送驗證碼 / 發送驗證信
 function Step1({ onNext }) {
-  // 全域錯誤訊息
+  // 錯誤訊息(全域)
   const { setErrMsg } = useError()
   const handleError = (message) => setErrMsg(message)
 
   // 導向
   const navigate = useNavigate()
 
+  // 信箱 / 電話
   const [loginKey, setLoginKey] = useState('')
+  // 輸入過
   const [hasTyped, setHasTyped] = useState(false)
+  // 錯誤訊息(非全域)
   const [errorMessage, setErrorMessage] = useState('')
+  // 使用電話與否
   const [isPhone, setIsPhone] = useState(false)
+  // 信箱 / 電話 有效
   const [isValid, setIsValid] = useState(false)
+  // 載入中
   const [loading, setLoading] = useState(false)
 
   // change 監聽器

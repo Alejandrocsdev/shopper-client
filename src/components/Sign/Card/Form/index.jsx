@@ -7,6 +7,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 // 鉤子函式
 import { useState, useRef } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
+import useAuth from '../../../../hooks/useAuth'
 // API
 import axios from '../../../../api/axios'
 // URL
@@ -15,6 +16,9 @@ const PWD_SIGN_IN_URL = '/auth/signIn/pwd'
 
 // 表單: 密碼登入 / 簡訊登入 / 註冊
 const Form = ({ onNext, isSignIn, isSmsSignIn }) => {
+  // 身分憑證
+  const { setAuth } = useAuth()
+
   // 密碼登入
   const isPwdSignIn = isSignIn && !isSmsSignIn
   // 導向
@@ -77,6 +81,7 @@ const Form = ({ onNext, isSignIn, isSmsSignIn }) => {
       if (isPwdSignIn) {
         const response = await axios.post(PWD_SIGN_IN_URL, input, { withCredentials: true })
         setError({ errMsg: '', hasError: false })
+        setAuth(response.data.result)
         // 導向首頁
         navigate(from, { replace: true })
         console.log('密碼登入')

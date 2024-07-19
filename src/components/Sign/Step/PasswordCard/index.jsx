@@ -142,7 +142,7 @@ function PasswordCard({ onNext, phone, email, isSignUp }) {
       </div>
       {/* 執行下一步 */}
       <div className={`${S.submit} ${submitStyle}`} onClick={handleSubmit}>
-        註冊
+        {isSignUp ? '註冊' : '重設'}
       </div>
     </>
   )
