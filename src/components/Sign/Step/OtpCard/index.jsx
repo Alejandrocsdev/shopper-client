@@ -133,7 +133,7 @@ function OtpCard({ onNext, phone, isSignUp, isSmsSignIn }) {
             { phone, otp: otp.join('') },
             { withCredentials: true }
           )
-          setAuth(response.data.result)
+          setAuth({ accessToken: response.data.result })
           console.log('簡訊登入')
           navigate('/')
         }

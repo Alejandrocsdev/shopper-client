@@ -4,10 +4,18 @@ const AuthContext = createContext({})
 
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({})
-  console.log('Access Token: ', auth)
+  const [sign, setSign] = useState(null)
+
+  if (sign === null) {
+    console.log('未登入')
+  } else if (sign === false) {
+    console.log('已登出')
+  } else {
+    console.log('登入中')
+  }
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ auth, setAuth, sign, setSign }}>{children}</AuthContext.Provider>
   )
 }
 

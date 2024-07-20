@@ -17,7 +17,7 @@ const PWD_SIGN_IN_URL = '/auth/signIn/pwd'
 // 表單: 密碼登入 / 簡訊登入 / 註冊
 const Form = ({ onNext, isSignIn, isSmsSignIn }) => {
   // 身分憑證
-  const { setAuth } = useAuth()
+  const { setAuth, setSign } = useAuth()
 
   // 密碼登入
   const isPwdSignIn = isSignIn && !isSmsSignIn
@@ -81,7 +81,8 @@ const Form = ({ onNext, isSignIn, isSmsSignIn }) => {
       if (isPwdSignIn) {
         const response = await axios.post(PWD_SIGN_IN_URL, input, { withCredentials: true })
         setError({ errMsg: '', hasError: false })
-        setAuth(response.data.result)
+        setAuth({ accessToken: response.data.result })
+        setSign(true)
         // 導向首頁
         navigate(from, { replace: true })
         console.log('密碼登入')

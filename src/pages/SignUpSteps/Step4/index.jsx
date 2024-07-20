@@ -31,7 +31,7 @@ function Step4({ onNext, id, username, phone, avatar }) {
       const response = await axios.post(`${AUTO_SIGN_IN_URL}/${id}`, null, {
         withCredentials: true
       })
-      setAuth(response.data.result)
+      setAuth({ accessToken: response.data.result })
       console.log('自動登入')
       navigate('/')
     } catch (err) {

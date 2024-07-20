@@ -7,4 +7,9 @@ const axiosInstance = axios.create({
   baseURL
 })
 
+export const axiosPrivate = axios.create({
+  baseURL,
+  withCredentials: true
+})
+
 export default axiosInstance

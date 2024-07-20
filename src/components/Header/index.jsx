@@ -10,13 +10,14 @@ import { faSquareFacebook, faInstagram, faLine } from '@fortawesome/free-brands-
 import { faCartShopping, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 // 組件
 import Anchor from '../Elements/Anchor'
-
-const fetchedAvatar = 'https://avatar.iran.liara.run/public/boy'
-const fetchedUsername = 'newlean14'
-const user = false
+// 鉤子函式
+import useUserData from '../../hooks/useUserData'
 
 // 頁首組件
 function Header() {
+  // 用戶資料
+  const user = useUserData()
+
   // 社群 LOGO 元素
   const facebook = <FontAwesomeIcon className={S.socialMedia} icon={faSquareFacebook} />
   const instagram = <FontAwesomeIcon className={S.socialMedia} icon={faInstagram} />
@@ -24,8 +25,8 @@ function Header() {
   // 登入樣式
   const signInView = (
     <>
-      <img className={S.avatar} src={fetchedAvatar || avatarPng} />
-      <div className={S.username}>{fetchedUsername}</div>
+      <img className={S.avatar} src={user?.avatar || avatarPng} />
+      <div className={S.username}>{user?.username}</div>
     </>
   )
   // 網站 LOGO 元素
@@ -43,7 +44,7 @@ function Header() {
         <nav className={S.nav}>
           {/* 導覽列左側 */}
           <div className={S.navLeft}>
-            {user && <Anchor style={S.seller} content="賣家中心" to="/seller" />}
+            {user && <Anchor style={S.seller} content="賣家中心" to="/signIn" />}
             <Anchor style={S.socialMedia} content={facebook} />
             <Anchor style={S.socialMedia} content={instagram} />
             <Anchor style={S.socialMedia} content={line} />
