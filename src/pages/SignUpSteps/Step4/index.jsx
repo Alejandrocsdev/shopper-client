@@ -16,7 +16,7 @@ const AUTO_SIGN_IN_URL = '/auth/signIn/auto'
 // 註冊(4): 已註冊過
 function Step4({ onNext, id, username, phone, avatar }) {
   // 身分憑證
-  const { setAuth } = useAuth()
+  const { setAuth, setSign } = useAuth()
 
   // 全域錯誤訊息
   const { setErrMsg } = useError()
@@ -32,6 +32,7 @@ function Step4({ onNext, id, username, phone, avatar }) {
         withCredentials: true
       })
       setAuth({ accessToken: response.data.result })
+      setSign(true)
       console.log('自動登入')
       navigate('/')
     } catch (err) {

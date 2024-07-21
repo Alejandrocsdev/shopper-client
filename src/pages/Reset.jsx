@@ -11,7 +11,7 @@ import Step5 from '../pages/ResetSteps/Step5'
 // Step4: 密碼重設成功(信箱)
 // Step5: 密碼重設失敗(信箱)
 
-// Hooks
+// 鉤子函式
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
@@ -38,7 +38,7 @@ function Reset() {
     } else if (queryParams.get('verified') === 'false') {
       setStep(5)
       setMessage(queryParams.get('message'))
-    }
+    } 
   }, [location.search])
 
   // 下一步(包含資料傳遞)

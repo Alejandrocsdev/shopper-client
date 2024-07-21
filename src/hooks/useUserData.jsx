@@ -14,7 +14,7 @@ const useUserData = () => {
   useEffect(() => {
     // 取得用戶資料
     const fetchData = async () => {
-      if (!sign) return
+      if (sign === false) return
 
       try {
         const response = await axiosPrivate.get('/users/me', {

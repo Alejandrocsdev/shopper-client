@@ -19,7 +19,7 @@ const NOTIFY_RESET_URL = '/notify/reset/password'
 // 成功頁面: 註冊 / 重設密碼
 function Success({ id, phone, email, isSignUp = false }) {
   // 身分憑證
-  const { setAuth } = useAuth()
+  const { setAuth, setSign } = useAuth()
 
   // 錯誤訊息(全域)
   const { setErrMsg } = useError()
@@ -57,6 +57,7 @@ function Success({ id, phone, email, isSignUp = false }) {
           withCredentials: true
         })
         setAuth({ accessToken: response.data.result })
+        setSign(true)
         console.log('自動登入')
         navigate('/profile')
       } else if (email) {

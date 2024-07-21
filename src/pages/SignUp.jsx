@@ -10,9 +10,11 @@ import Step4 from './SignUpSteps/Step4'
 // Step2: 輸入註冊密碼
 // Step3: 註冊成功
 // Step4: 已註冊過
+// Step5: 臉書註冊失敗
 
 // 鉤子函式
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 
 // 註冊流程
 function SignUp() {
@@ -23,8 +25,23 @@ function SignUp() {
   const [username, setUsername] = useState('')
   const [phone, setPhone] = useState('')
   const [avatar, setAvatar] = useState('')
+  const [email, setEmail] = useState('')
+  const [facebookId, setFacebookId] = useState('')
   // 用戶資料物件
-  const user = { id, username, phone, avatar }
+  const user = { id, username, phone, avatar, email, facebookId }
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search)
+
+    if (queryParams.get('facebook') === 'true') {
+      setStep(2)
+      setAvatar(queryParams.get('avatar'))
+      setEmail(queryParams.get('email'))
+      setFacebookId(queryParams.get('facebookId'))
+    } else if (queryParams.get('facebook') === 'false') {
+      setStep(5)
+    } 
+  }, [location.search])
 
   // 下一步(包含資料傳遞)
   const next = (user, isSignedUp = false) => {
@@ -33,6 +50,8 @@ function SignUp() {
     setUsername(user.username)
     setPhone(user.phone)
     setAvatar(user.avatar)
+    setEmail(user.email)
+    setFacebookId(user.facebookId)
     // 設定步驟
     setStep((prevStep) => {
       switch (prevStep) {

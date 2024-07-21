@@ -18,7 +18,7 @@ const SMS_SIGN_IN_URL = '/auth/signIn/sms'
 // 簡訊驗證碼表單
 function OtpCard({ onNext, phone, isSignUp, isSmsSignIn }) {
   // 身分憑證
-  const { setAuth } = useAuth()
+  const { setAuth, setSign } = useAuth()
 
   // 導向
   const navigate = useNavigate()
@@ -134,6 +134,7 @@ function OtpCard({ onNext, phone, isSignUp, isSmsSignIn }) {
             { withCredentials: true }
           )
           setAuth({ accessToken: response.data.result })
+          setSign(true)
           console.log('簡訊登入')
           navigate('/')
         }
