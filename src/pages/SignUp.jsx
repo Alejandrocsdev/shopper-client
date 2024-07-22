@@ -18,6 +18,8 @@ import { useLocation } from 'react-router-dom'
 
 // 註冊流程
 function SignUp() {
+  // 路徑
+  const location = useLocation()
   // 步驟
   const [step, setStep] = useState(0)
   // 用戶資料
@@ -27,6 +29,7 @@ function SignUp() {
   const [avatar, setAvatar] = useState('')
   const [email, setEmail] = useState('')
   const [facebookId, setFacebookId] = useState('')
+
   // 用戶資料物件
   const user = { id, username, phone, avatar, email, facebookId }
 
@@ -38,9 +41,14 @@ function SignUp() {
       setAvatar(queryParams.get('avatar'))
       setEmail(queryParams.get('email'))
       setFacebookId(queryParams.get('facebookId'))
+    } else if (queryParams.get('fbSigned') === 'true') {
+      setStep(4)
+      setId(queryParams.get('id'))
+      setUsername(queryParams.get('username'))
+      setAvatar(queryParams.get('avatar'))
     } else if (queryParams.get('facebook') === 'false') {
       setStep(5)
-    } 
+    }
   }, [location.search])
 
   // 下一步(包含資料傳遞)
@@ -75,9 +83,13 @@ function SignUp() {
     <div>
       {step === 0 && <Sign onNext={next} isSignIn={false} isSmsSignIn={false} />}
       {step === 1 && <Step1 onNext={next} onPrevious={previous} phone={phone} />}
-      {step === 2 && <Step2 onNext={next} phone={phone} />}
-      {step === 3 && <Step3 id={id} phone={phone} />}
-      {step === 4 && <Step4 onNext={next} id={id} phone={phone} username={username} avatar={avatar} />}
+      {step === 2 && (
+        <Step2 onNext={next} phone={phone} email={email} avatar={avatar} facebookId={facebookId} />
+      )}
+      {step === 3 && <Step3 id={id} phone={phone} facebookId={facebookId} />}
+      {step === 4 && (
+        <Step4 onNext={next} id={id} phone={phone} username={username} avatar={avatar} />
+      )}
     </div>
   )
 }

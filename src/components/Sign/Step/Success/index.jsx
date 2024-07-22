@@ -17,7 +17,7 @@ const AUTO_SIGN_IN_URL = '/auth/signIn/auto'
 const NOTIFY_RESET_URL = '/notify/reset/password'
 
 // 成功頁面: 註冊 / 重設密碼
-function Success({ id, phone, email, isSignUp = false }) {
+function Success({ id, phone, email, facebookId, isSignUp = false }) {
   // 身分憑證
   const { setAuth, setSign } = useAuth()
 
@@ -84,7 +84,7 @@ function Success({ id, phone, email, isSignUp = false }) {
       <div className={S.successIcon}>{successIcon}</div>
       <div className={S.cardText}>
         <div className={S.text}>
-          您已成功使用{phone ? '電話號碼' : 'Email'}{' '}
+          您已成功使用{facebookId ? 'Facebook' : (phone ? '電話號碼' : 'Email')}{' '}
           <span className={S.method}>{phone ? phone : email}</span>
           <div>{isSignUp ? '建立瞎皮爾購物帳號' : '重設密碼'}</div>
         </div>

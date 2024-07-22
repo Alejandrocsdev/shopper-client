@@ -11,10 +11,11 @@ import { useError } from '../../../../contexts/ErrorContext'
 import axios from '../../../../api/axios'
 // URL
 const SIGN_UP_URL = '/auth/signUp'
+const FB_SIGN_UP_URL = '/auth/signUp/facebook'
 const UPDATE_PASSWORD_URL = '/users'
 
 // 輸入密碼表單
-function PasswordCard({ onNext, phone, email, isSignUp }) {
+function PasswordCard({ onNext, phone, email, avatar, facebookId, isSignUp }) {
   // 全域錯誤訊息
   const { setErrMsg } = useError()
   const handleError = (message) => setErrMsg(message)
@@ -72,7 +73,12 @@ function PasswordCard({ onNext, phone, email, isSignUp }) {
   const handleSubmit = async () => {
     if (isPwdValid) {
       try {
-        if (isSignUp) {
+        if (isSignUp && facebookId) {
+          const response = await axios.post(FB_SIGN_UP_URL, { email, avatar, facebookId, password })
+          const user = response.data.result
+          console.log('臉書註冊成功')
+          onNext({ id: user.id, facebookId })
+        } else if (isSignUp) {
           const response = await axios.post(SIGN_UP_URL, { phone, password })
           const user = response.data.result
           console.log('註冊成功')

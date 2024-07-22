@@ -27,6 +27,7 @@ function Reset() {
   // 驗證信 query
   const [message, setMessage] = useState('')
 
+  // 重設方法物件
   const method = { phone, email }
 
   useEffect(() => {

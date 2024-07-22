@@ -1,4 +1,3 @@
-
 // 模組樣式
 import S from './style.module.css'
 // PNG 圖檔
@@ -23,16 +22,10 @@ function Card({ onPrevious, onNext, isSignIn, isSmsSignIn }) {
       {/* 忘記密碼 || 其他登入 */}
       {isSignIn && (
         <div className={S.otherSign}>
+          <div>{isPwdSignIn && <Anchor style={S.forgotPwd} content="忘記密碼" to="/reset" />}</div>
           <div>
-            {isPwdSignIn && <Anchor style={S.forgotPwd} content="忘記密碼" to="/reset" />}
-          </div>
-          <div>
-            {isPwdSignIn && (
-              <Anchor style={S.smsSignIn} content="使用簡訊登入" onClick={onNext} />
-            )}
-            {isSmsSignIn && (
-              <Anchor style={S.smsSignIn} content="使用密碼登入" onClick={onPrevious} />
-            )}
+            {isPwdSignIn && <Anchor style={S.smsSignIn} content="使用簡訊登入" onClick={onNext} />}
+            {isSmsSignIn && <Anchor style={S.smsSignIn} content="使用密碼登入" onClick={onPrevious} />}
           </div>
         </div>
       )}
@@ -47,7 +40,7 @@ function Card({ onPrevious, onNext, isSignIn, isSmsSignIn }) {
         </div>
       </div>
       {/* 第三方登入/註冊 */}
-      <ThirdPartySign />
+      <ThirdPartySign isSignIn={isSignIn} />
       {/* 服務條款 */}
       {!isSignIn && (
         <div className={S.policy}>

@@ -48,7 +48,7 @@ function Step4({ onNext, id, username, phone, avatar }) {
       <div className={S.username}>{username}</div>
       <div className={S.phone}>{phone}</div>
       <div className={S.text}>
-        此手機號碼已被此帳號使用，若此帳號屬於您，請點選「是，前往登入」。
+        資料已被此帳號使用，若此帳號屬於您，請點選「是，前往登入」。
       </div>
       {/* 登入 */}
       <div className={S.submit} onClick={handleLogin}>
